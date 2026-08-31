@@ -17,3 +17,6 @@ class ResumeAnalysis(models.Model):
     recommendations = models.JSONField(default=list)
 
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Analysis for {self.resume.title}"

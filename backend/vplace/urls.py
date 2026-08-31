@@ -21,7 +21,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/resumes/',include('resumes.urls'))
+    path('api/resumes/',include('resumes.urls')),
+    path('api/resume-analyzer/',include('resume_analyzer.urls'))
 ]
 
 if settings.DEBUG:
