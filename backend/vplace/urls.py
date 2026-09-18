@@ -18,15 +18,28 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import login_page,home_page, job_page, event_page, test_page, profile_page, logout
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/resumes/',include('resumes.urls')),
-    path('api/resume-analyzer/',include('resume_analyzer.urls'))
+    path('api/resume-analyzer/',include('resume_analyzer.urls')),
+    path('api/users/',include("users.urls")),
+    path("login/", login_page, name = "login_page"), 
+    path("home/", home_page, name = "home"),
+    path("job/", job_page, name="job"),
+    path("event/", event_page, name="event"),
+    path("test/", test_page, name="test"),
+    path("profile/", profile_page, name="profile"),
+    path("logout/",logout, name= "logout")
 ]
 
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT
-        )
+    )
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATICFILES_DIRS[0]
+    )

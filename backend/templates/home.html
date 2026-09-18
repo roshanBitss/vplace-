@@ -1,0 +1,626 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPlace | Placement Portal</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font - DM Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Material Symbols Outlined -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+
+    <!-- Home Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+    <!-- CanvasJS CDN -->
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</head>
+<body>
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+<nav class="navbar navbar-expand-lg vplace-navbar sticky-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}">
+            <img src="{% static 'images/logo.png' %}" alt="VSIT Logo" class="navbar-logo">
+            <div class="brand-text">
+                <span class="brand-title">VPlace</span>
+                <span class="brand-subtitle">Placement Portal</span>
+            </div>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="material-symbols-outlined">menu</span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'job' %}">Jobs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'event' %}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'test' %}">Quiz</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+            </ul>
+
+            <!-- PROFILE & LOGOUT -->
+            <div class="profile-menu">
+                <a href="{% url 'profile' %}" class="profile-link" title="My Profile">
+                    {% if profile and profile.image %}
+                        <img src="{{ profile.image.url }}" alt="Profile" class="profile-image">
+                    {% else %}
+                        <span class="material-symbols-outlined profile-icon">account_circle</span>
+                    {% endif %}
+                </a>
+                <a href="{% url 'logout' %}" id="logoutLink" class="logout-link">Logout</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- =====================================================
+     HERO SECTION
+===================================================== -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="hero-badge">
+                    <span class="material-symbols-outlined">work</span>
+                    College Placement Portal
+                </div>
+
+                <h1 class="hero-title" id="heroGreeting">
+                    {% if profile %}
+                        Hello, <span>{{ profile.name }}</span>
+                    {% else %}
+                        Welcome to <span>VPlace</span>
+                    {% endif %}
+                </h1>
+
+                <p class="hero-description">
+                    Your journey from <strong>college to career</strong> starts here.
+                    Discover top job opportunities, prepare for competitive interviews,
+                    enhance your skills, and connect with leading industry recruiters.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="{% url 'job' %}" class="btn-primary-custom">
+                        <span class="material-symbols-outlined">search</span>
+                        Explore Jobs
+                    </a>
+                    <a href="{% url 'profile' %}" class="btn-outline-custom">
+                        View Profile
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-visual">
+                    <div class="hero-circle"></div>
+
+                    <div class="hero-card hero-card-main">
+                        <span class="material-symbols-outlined hero-card-icon">trending_up</span>
+                        <div>
+                            <span class="hero-card-label">Career Growth</span>
+                            <strong>Start Today</strong>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-one">
+                        <span class="material-symbols-outlined">business_center</span>
+                        <div>
+                            <strong>Placement</strong>
+                            <small>Opportunities</small>
+                        </div>
+                    </div>
+
+                    <div class="floating-card floating-card-two">
+                        <span class="material-symbols-outlined">auto_awesome</span>
+                        <div>
+                            <strong>AI Powered</strong>
+                            <small>Career Support</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     QUICK STATS
+===================================================== -->
+<section class="quick-stats">
+    <div class="container">
+        <div class="stats-wrapper">
+            <div class="quick-stat">
+                <span class="material-symbols-outlined">apartment</span>
+                <div>
+                    <strong class="count-up" data-target="40" data-suffix="+">40+</strong>
+                    <small>Schools Visiting</small>
+                </div>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="quick-stat">
+                <span class="material-symbols-outlined">currency_rupee</span>
+                <div>
+                    <strong class="count-up" data-target="9.60" data-prefix="₹" data-suffix=" L" data-decimals="2">₹9.60 L</strong>
+                    <small>Highest Package</small>
+                </div>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="quick-stat">
+                <span class="material-symbols-outlined">groups</span>
+                <div>
+                    <strong class="count-up" data-target="60" data-suffix="+">60+</strong>
+                    <small>Placement Offers</small>
+                </div>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="quick-stat">
+                <span class="material-symbols-outlined">rocket_launch</span>
+                <div>
+                    <strong>Career</strong>
+                    <small>Starts Here</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     PLACEMENT HEADS
+===================================================== -->
+<section class="content-section reveal-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">PLACEMENT CELL</span>
+            <h2>Meet Our Placement Heads</h2>
+            <p>Get personalized guidance and dedicated support throughout your placement journey.</p>
+        </div>
+
+        <div class="row g-4">
+            <!-- HEAD 1 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="person-card">
+                    <div class="person-image-wrapper">
+                        <img src="{% static 'images/IMG_8201(1).png' %}" alt="Placement Head Roshan Bitlingu">
+                    </div>
+                    <div class="person-content">
+                        <span class="person-role">Placement Head</span>
+                        <h3>Roshan Bitlingu</h3>
+                        <div class="person-info">
+                            <p>
+                                <span class="material-symbols-outlined">mail</span>
+                                dinesh.sukumaran@vsit.edu.in
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">schedule</span>
+                                9:00 AM – 5:00 PM
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">call</span>
+                                022-24104244 (Extn: 3103)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HEAD 2 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="person-card">
+                    <div class="person-image-wrapper">
+                        <img src="{% static 'images/snehal_tandale.png' %}" alt="Placement Head Snehal Tandale">
+                    </div>
+                    <div class="person-content">
+                        <span class="person-role">Placement Head</span>
+                        <h3>Snehal Tandale</h3>
+                        <div class="person-info">
+                            <p>
+                                <span class="material-symbols-outlined">mail</span>
+                                snehal.tandale@vsit.edu.in
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">schedule</span>
+                                9:00 AM – 5:00 PM
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">call</span>
+                                022-24104244 (Extn: 3103)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HEAD 3 -->
+            <div class="col-lg-4 col-md-6">
+                <div class="person-card">
+                    <div class="person-image-wrapper">
+                        <img src="{% static 'images/Shobha_Nalawade.png' %}" alt="Placement Head Spruha More">
+                    </div>
+                    <div class="person-content">
+                        <span class="person-role">Placement Head</span>
+                        <h3>Spruha More</h3>
+                        <div class="person-info">
+                            <p>
+                                <span class="material-symbols-outlined">mail</span>
+                                spruha.more@vsit.edu.in
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">schedule</span>
+                                9:00 AM – 5:00 PM
+                            </p>
+                            <p>
+                                <span class="material-symbols-outlined">call</span>
+                                022-24104244 (Extn: 3103)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     STUDENT COORDINATORS
+===================================================== -->
+<section class="content-section coordinators-section reveal-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">STUDENT SUPPORT</span>
+            <h2>Student Coordinators</h2>
+            <p>Connect with student coordinators for prompt assistance and peer support.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="coordinator-card">
+                    <img src="{% static 'images/Kalyani.png' %}" alt="Kalyani Gunjal">
+                    <div>
+                        <h3>Kalyani Gunjal</h3>
+                        <p>kalyani.gunjal@vsit.edu.in</p>
+                        <span>90824 54754</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="coordinator-card">
+                    <img src="{% static 'images/IMG_8208(1).jpg' %}" alt="Rahul Sapa">
+                    <div>
+                        <h3>Rahul Sapa</h3>
+                        <p>rahul.sapa@vsit.edu.in</p>
+                        <span>96197 11396</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="coordinator-card">
+                    <img src="{% static 'images/Rakshita.jpg' %}" alt="Rakshita Boga">
+                    <div>
+                        <h3>Rakshita Boga</h3>
+                        <p>rakshita.boga@vsit.edu.in</p>
+                        <span>93241 36575</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     PLACEMENT ANALYTICS
+===================================================== -->
+<section class="analytics-section reveal-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">PLACEMENT ANALYTICS</span>
+            <h2>Placement Statistics</h2>
+            <p>Explore placement packages and department-wise recruitment distribution.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div>
+                            <span class="chart-icon">
+                                <span class="material-symbols-outlined">bar_chart</span>
+                            </span>
+                            <div>
+                                <h3>Package Per Year</h3>
+                                <p>Package statistics in Lakhs per Annum (LPA)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chartContainerFruits" class="placement-chart"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="chart-card">
+                    <div class="chart-card-header">
+                        <div>
+                            <span class="chart-icon">
+                                <span class="material-symbols-outlined">pie_chart</span>
+                            </span>
+                            <div>
+                                <h3>Department Placements</h3>
+                                <p>Students placed by academic department</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chartContainerSales" class="placement-chart"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     HIGHLIGHTS
+===================================================== -->
+<section class="highlights-section reveal-section">
+    <div class="container">
+        <div class="section-heading light-heading">
+            <span class="section-label">AT A GLANCE</span>
+            <h2>Placement Highlights</h2>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="highlight-card">
+                    <span class="material-symbols-outlined">school</span>
+                    <strong class="count-up" data-target="40" data-suffix="+">40+</strong>
+                    <span>Schools Visiting</span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="highlight-card">
+                    <span class="material-symbols-outlined">currency_rupee</span>
+                    <strong class="count-up" data-target="9.60" data-prefix="₹" data-suffix=" L" data-decimals="2">₹9.60 L</strong>
+                    <span>Highest Package</span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="highlight-card">
+                    <span class="material-symbols-outlined">payments</span>
+                    <strong class="count-up" data-target="3" data-prefix="₹" data-suffix=" L">₹3 L</strong>
+                    <span>Average Package</span>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="highlight-card">
+                    <span class="material-symbols-outlined">verified</span>
+                    <strong class="count-up" data-target="60" data-suffix="+">60+</strong>
+                    <span>Placement Offers</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     RECRUITMENT PROCESS
+===================================================== -->
+<section class="content-section reveal-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">HOW IT WORKS</span>
+            <h2>Recruitment Process</h2>
+            <p>A structured journey from career opportunity to offer letter.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-card">
+                <span class="process-number">01</span>
+                <span class="material-symbols-outlined">campaign</span>
+                <h3>Industry Outreach</h3>
+                <p>Communicating about job fairs and placement drives with industry partners.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">02</span>
+                <span class="material-symbols-outlined">how_to_reg</span>
+                <h3>Applications</h3>
+                <p>Inviting online applications and profiles from eligible students.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">03</span>
+                <span class="material-symbols-outlined">groups</span>
+                <h3>Pre-Placement Talk</h3>
+                <p>Students interact with company leaders and understand company culture.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">04</span>
+                <span class="material-symbols-outlined">record_voice_over</span>
+                <h3>First Interview</h3>
+                <p>Technical evaluation and initial screening rounds.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">05</span>
+                <span class="material-symbols-outlined">feedback</span>
+                <h3>Feedback</h3>
+                <p>Performance feedback from the first round is communicated to students.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">06</span>
+                <span class="material-symbols-outlined">co_present</span>
+                <h3>Demo Round</h3>
+                <p>Second round involving problem solving, coding, or demo assessment.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">07</span>
+                <span class="material-symbols-outlined">rate_review</span>
+                <h3>Second Feedback</h3>
+                <p>Detailed evaluation and shortlisted candidates are advanced.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">08</span>
+                <span class="material-symbols-outlined">handshake</span>
+                <h3>Final Round</h3>
+                <p>Final leadership interview with Department Head and Director.</p>
+            </div>
+
+            <div class="process-card">
+                <span class="process-number">09</span>
+                <span class="material-symbols-outlined">task_alt</span>
+                <h3>Result</h3>
+                <p>Official placement offer letters released and results announced.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     INDUSTRY PARTNERS
+===================================================== -->
+<section class="partners-section reveal-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="section-label">INDUSTRY CONNECTIONS</span>
+            <h2>Our Industry Partners</h2>
+            <p>
+                Our students benefit from live workplace experience,
+                internships, sponsorships, guest lectures, and industry insights.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="{% static 'images/infosys.png' %}" alt="Infosys">
+                    </div>
+                    <h3>Infosys</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="{% static 'images/tescom.png' %}" alt="Tescom Solutions">
+                    </div>
+                    <h3>Tescom Solutions</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="{% static 'images/silverlink.png' %}" alt="Silverlink Technologies">
+                    </div>
+                    <h3>Silverlink Technologies</h3>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="partner-card">
+                    <div class="partner-logo">
+                        <img src="{% static 'images/simkraft.png' %}" alt="Simkraft Technologies">
+                    </div>
+                    <h3>Simkraft Technologies</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+<footer class="vplace-footer">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6">
+                <div class="footer-brand">
+                    <img src="{% static 'images/logo.png' %}" alt="VSIT Logo">
+                    <div>
+                        <h3>VPlace</h3>
+                        <p>College Placement Portal</p>
+                    </div>
+                </div>
+
+                <p class="footer-description">
+                    Connecting students with opportunities and helping them build successful careers through comprehensive guidance and placement drives.
+                </p>
+            </div>
+
+            <div class="col-lg-3">
+                <h4>Quick Links</h4>
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'job' %}">Jobs</a>
+                <a href="{% url 'event' %}">Events</a>
+                <a href="{% url 'profile' %}">Profile</a>
+            </div>
+
+            <div class="col-lg-3">
+                <h4>Placement</h4>
+                <a href="{% url 'test' %}">Quiz</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2025 Vidyalankar School of Information Technology</span>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Facebook">
+                    <span class="material-symbols-outlined">public</span>
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <span class="material-symbols-outlined">photo_camera</span>
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <span class="material-symbols-outlined">business</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Home Page Script -->
+<script src="{% static 'js/home.js' %}"></script>
+
+</body>
+</html>

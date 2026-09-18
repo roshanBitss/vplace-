@@ -1,0 +1,542 @@
+:root {
+    --primary-red: #dc1f26;
+    --dark-red: #b51219;
+    --light-red: #fff1f2;
+    --soft-red: #ffe4e6;
+
+    --dark: #171717;
+    --text: #444444;
+    --muted: #777777;
+
+    --white: #ffffff;
+    --background: #f7f8fa;
+    --border: #e7e7e7;
+}
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "DM Sans", sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.vplace-navbar {
+    min-height: 74px;
+    background: var(--primary-red);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.10);
+}
+
+.brand-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    padding: 3px;
+    background: white;
+    border-radius: 8px;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.brand-title {
+    color: white;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.brand-subtitle {
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.70);
+    font-size: 8px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    margin-left: 6px;
+    padding: 9px 14px !important;
+    border-radius: 9px;
+    color: rgba(255, 255, 255, 0.82) !important;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: white !important;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.nav-link.active {
+    color: var(--primary-red) !important;
+    background: white;
+}
+
+.nav-link.logout-btn {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.nav-link.logout-btn:hover {
+    background: white;
+    color: var(--primary-red) !important;
+}
+
+.navbar-toggler {
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.page-header {
+    padding: 55px 0 70px;
+    background: linear-gradient(135deg, #fff1f2, #ffffff);
+    border-bottom: 1px solid #eeeeee;
+}
+
+.page-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.page-label {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: var(--primary-red);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: var(--dark);
+    font-size: clamp(35px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.page-header h1 span {
+    color: var(--primary-red);
+}
+
+.page-header p {
+    max-width: 650px;
+    margin: 16px 0 0;
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   COMPLETION CARD
+========================================================= */
+
+.completion-card {
+    min-width: 190px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #eeeeee;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.completion-card > .material-symbols-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    color: var(--primary-red);
+    background: var(--light-red);
+    border-radius: 11px;
+    font-size: 23px;
+}
+
+.completion-card strong {
+    display: block;
+    color: var(--dark);
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.completion-card small {
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.profile-section {
+    padding: 55px 0 80px;
+}
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+#messageBox {
+    border: none;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 25px;
+}
+
+/* =========================================================
+   PROFILE CARD
+========================================================= */
+
+.profile-card {
+    padding: 32px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 30px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.section-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    color: var(--primary-red);
+    background: var(--light-red);
+    border-radius: 12px;
+}
+
+.section-icon .material-symbols-outlined {
+    font-size: 24px;
+}
+
+.section-header h2 {
+    margin: 0 0 4px;
+    color: var(--dark);
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.section-header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.profile-card label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333333;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.profile-input {
+    min-height: 47px;
+    padding: 10px 13px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    color: var(--dark);
+    font-size: 12px;
+    box-shadow: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-input:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 4px rgba(220, 31, 38, 0.07) !important;
+}
+
+.profile-input::placeholder {
+    color: #aaaaaa;
+}
+
+textarea.profile-input {
+    resize: vertical;
+    min-height: 125px;
+}
+
+.input-help {
+    display: block;
+    margin-top: 6px;
+    color: #999999;
+    font-size: 9px;
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.save-section {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+.save-button {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 22px;
+    border: none;
+    border-radius: 10px;
+    background: var(--primary-red);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 9px 22px rgba(220, 31, 38, 0.18);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.save-button:hover {
+    background: var(--dark-red);
+    transform: translateY(-2px);
+}
+
+.save-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.save-button .material-symbols-outlined {
+    font-size: 19px;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 767px) {
+    .page-header {
+        padding: 40px 0 50px;
+    }
+
+    .page-header-content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .completion-card {
+        width: 100%;
+    }
+
+    .profile-section {
+        padding-top: 35px;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+
+    .save-section {
+        justify-content: stretch;
+    }
+
+    .save-button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 450px) {
+    .profile-card {
+        padding: 18px;
+    }
+
+    .section-header {
+        align-items: flex-start;
+    }
+
+    .section-header h2 {
+        font-size: 17px;
+    }
+}
+
+/* ==========================================
+   EDUCATION SECTION
+========================================== */
+
+.profile-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-top: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.section-header p {
+    margin: 6px 0 0;
+    color: #777;
+}
+
+.add-btn {
+    border: none;
+    background: #b5121b;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.add-btn:hover {
+    background: #941019;
+}
+
+.education-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: #fafafa;
+}
+
+.education-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.education-card-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.remove-education-btn {
+    border: none;
+    background: transparent;
+    color: #dc3545;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.education-field {
+    display: flex;
+    flex-direction: column;
+}
+
+.education-field label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.education-field input {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+
+.education-field input:focus {
+    border-color: #b5121b;
+}
+
+.education-empty {
+    text-align: center;
+    padding: 30px;
+    color: #777;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .education-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .add-btn {
+        width: 100%;
+    }
+
+}
+
